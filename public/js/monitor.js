@@ -14,7 +14,7 @@ const $btnAdicionarContent = $('#btnAdicionarContent')
 const $btnTestar = $('#btnTestar')
 const $iframePage = $('#iframe-page')
 
-const API = 'https://i-wanna-be-notified-api.herokuapp.com/api/v1'
+const API = 'https://i-wanna-be-notified-api-01.herokuapp.com/api/v1'
 // const API = 'http://localhost:9002/api/v1'
 
 $url.blur(setUrlOnIframe)
