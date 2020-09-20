@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon.png">
+    <title>I Wanna Be Notified - Admin</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="./assets/libs/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/libs/jquery-minicolors/jquery.minicolors.css">
+    <link rel="stylesheet" type="text/css" href="./assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/libs/quill/dist/quill.snow.css">
+    <link href="./dist/css/style.min.css" rel="stylesheet">
+    <link href="./assets/libs/toastr/build/toastr.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon -->
+                        <b class="logo-icon p-l-10">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <!-- <img src="./assets/images/logo-icon.png" alt="homepage" class="light-logo" /> -->
+                           I Wanna Be Notified
+                        </b>
+                        
+                        <!--End Logo icon -->
+                         <!-- Logo text -->
+                        <span class="logo-text">
+                             <!-- dark Logo text -->
+                             <!-- <img src="./assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+                            Admin
+                        </span>
+                        <!-- Logo icon -->
+                        <!-- <b class="logo-icon"> -->
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <!-- <img src="./assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+                            
+                        <!-- </b> -->
+                        <!--End Logo icon -->
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-left mr-auto">
+                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+                        <!-- ============================================================== -->
+                        <!-- create new -->
+                        <!-- ============================================================== -->
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <span class="d-none d-md-block">Create New <i class="fa fa-angle-down"></i></span>
+                             <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>   
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li> -->
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <!-- <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <form class="app-search position-absolute">
+                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
+                            </form>
+                        </li> -->
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-right">
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
+                            </a>
+                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li> -->
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="font-24 mdi mdi-comment-processing"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
+                                <ul class="list-style-none">
+                                    <li>
+                                        <div class="">
+                                             
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Event today</h5> 
+                                                        <span class="mail-desc">Just a reminder that event</span> 
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Settings</h5> 
+                                                        <span class="mail-desc">You can customize this template</span> 
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-primary btn-circle"><i class="ti-user"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Pavan kumar</h5> 
+                                                        <span class="mail-desc">Just see the my admin!</span> 
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            
+                                            <a href="javascript:void(0)" class="link border-top">
+                                                <div class="d-flex no-block align-items-center p-10">
+                                                    <span class="btn btn-danger btn-circle"><i class="fa fa-link"></i></span>
+                                                    <div class="m-l-10">
+                                                        <h5 class="m-b-0">Luanch Admin</h5> 
+                                                        <span class="mail-desc">Just see the my new admin!</span> 
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li> -->
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="./assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>                                
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" class="p-t-30">
+                        <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false">
+                                <i class="mdi mdi-view-dashboard"></i>
+                                <span class="hide-menu">Monitoramento</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title m-b-0">Monitoramento</h5>
+                                
+                                <form id="formMonitoring">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group m-t-20">
+                                                        <label>ID</label>
+                                                        <input type="text" class="form-control" name="_id" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-5">
+                                                    <div class="form-group m-t-20">
+                                                        <label>Name*</label>
+                                                        <input type="text" class="form-control" name="name" placeholder="Nome do monitoramento">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-3">
+                                                    <div class="form-group m-t-20">
+                                                        <label>Regularity</label>
+                                                        <!-- <input type="text" class="form-control" name="regularity" placeholder="Regularidade da execução"> -->
+                                                        <select class="form-control" name="regularity">
+                                                            <option value="*/3 * * * *">3 Minutos</option>
+                                                            <option value="*/5 * * * *">5 Minutos</option>
+                                                            <option value="*/10 * * * *">10 Minutos</option>
+                                                            <option value="*/15 * * * *" selected>15 Minutos</option>
+                                                            <option value="*/30 * * * *">30 Minutos</option>
+                                                            <option value="*/60 * * * *">60 Minutos</option>
+                                                        </select>
+                                                    </div>
+                                                    
+                                                </div>
+                                                        
+                                            </div>
+
+
+                                            <div class="form-group m-t-20">
+                                                <label>Url*</label>
+                                                <input type="text" class="form-control" name="url" placeholder="Url do site monitorado">
+                                            </div>
+
+                                            <div class="form-group m-t-20">
+                                                <label>ScriptTarget</label>                                    
+                                                <textarea rows="5" class="form-control" name="scriptTarget" placeholder="Script do alvo a ser monitorado"></textarea>
+                                            </div>
+
+                                            <div class="form-group m-t-20">
+                                                <label>ScriptContent</label>
+                                                <textarea rows="5" class="form-control" name="scriptContent" placeholder="Script para extração do conteudo"></textarea>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="form-group m-t-20">
+                                                        <label>Filter Words</label>
+                                                        <input type="text" class="form-control" name="words" placeholder="Palavras filtradas">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group m-t-20">
+                                                        <label>Filter Threshold</label>
+                                                        <input type="number" class="form-control" name="threshold" placeholder="Limite de comparação do filtro">
+                                                    </div>
+            
+                                                </div>                                            
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group m-t-20">
+                                                        <label>ScriptTag Url</label>
+                                                        <input type="text" class="form-control" name="scriptTagUrl" placeholder="Url de inclusão de Scripts na página">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group m-t-20">
+                                                        <label>Proxy</label>
+                                                        <input type="text" class="form-control" name="proxy" placeholder="Utilizar um proxy ao acessar a Url">
+                                                    </div>        
+                                                </div>                                            
+                                            </div>
+                                        
+                                        
+                                        </div>
+                                        <div class="col-md-4">
+
+                                            <div class="form-group m-t-20">
+                                                <div class="custom-control custom-checkbox mr-sm-2">
+                                                    <input type="checkbox" class="custom-control-input" id="disabled" name="disabled">
+                                                    <label class="custom-control-label" for="disabled">Desabilitado</label>
+                                                </div>
+                                            </div>                                        
+                                            
+                                            <div class="form-group m-t-20">
+                                                <div class="custom-control custom-checkbox mr-sm-2">
+                                                    <input type="checkbox" class="custom-control-input" id="useJquery" name="useJquery" checked>
+                                                    <label class="custom-control-label" for="useJquery">Usar JQuery</label>
+                                                </div>
+                                            </div>
+                                            
+            
+
+                                            <div class="form-group m-t-20">
+                                                <div class="custom-control custom-checkbox mr-sm-2">
+                                                    <input type="checkbox" class="custom-control-input" id="enableUserAgentRandom" name="enableUserAgentRandom">
+                                                    <label class="custom-control-label" for="enableUserAgentRandom">Enable UserAgentRandom</label>
+                                                </div>
+                                            </div>
+            
+            
+                                            <div class="form-group m-t-20">
+                                                <div class="custom-control custom-checkbox mr-sm-2">
+                                                    <input type="checkbox" class="custom-control-input" id="printscreen" name="printscreen">
+                                                    <label class="custom-control-label" for="printscreen">Printscreen</label>
+                                                </div>                                    
+                                            </div>
+            
+                                            <div class="form-group m-t-20">
+                                                <div class="custom-control custom-checkbox mr-sm-2">
+                                                    <input type="checkbox" class="custom-control-input" id="printscreenFullPage" name="printscreenFullPage">
+                                                    <label class="custom-control-label" for="printscreenFullPage">PrintscreenFullPage</label>
+                                                </div>                                    
+                                            </div>
+            
+                                            <div class="form-group m-t-20">
+                                                <div class="custom-control custom-checkbox mr-sm-2">
+                                                    <input type="checkbox" class="custom-control-input" id="notifyChange" name="notifyChange">
+                                                    <label class="custom-control-label" for="notifyChange">Notificar quando houver modificações</label>
+                                                </div>
+                                            </div>
+            
+                                            <div class="form-group m-t-20">
+                                                <div class="custom-control custom-checkbox mr-sm-2">
+                                                    <input type="checkbox" class="custom-control-input" id="notifyUniqueChange" name="notifyUniqueChange">
+                                                    <label class="custom-control-label" for="notifyUniqueChange">Notificar quando houver modificações unicas</label>
+                                                </div>
+                                            </div>
+            
+                                            
+                                            <div class="form-group m-t-20">
+                                                <label>WaitTime</label>
+                                                <input type="number" class="form-control" name="waitTime" placeholder="Tempo de espera pós carregamento da pagina">
+                                            </div>
+                                            
+                                            <div class="form-group m-t-20">
+                                                <label>Level Max</label>
+                                                <input type="number" class="form-control" name="levelMax" placeholder="Numero máximo de execuções subsequentes">
+                                            </div>
+                                            
+                                            
+
+                                            <div class="form-group m-t-20">
+                                                <label>Timeout</label>
+                                                <input type="number" class="form-control" name="timeout" placeholder="Timeout de acesso a Url">
+                                            </div>
+
+                                            <div class="form-group m-t-20">
+                                                <label>WaitUntil</label>
+                                                <input type="text" class="form-control" name="waitUntil" placeholder="Esperar até o carregamento da Url">
+                                            </div>
+                                            
+                                            <div class="border-top text-center">
+                                                <div class="card-body">
+                                                    <button id="salvar" class="btn btn-success">Salvar</button>
+                                                    <button id="limpar" class="btn btn-info">Limpar</button>
+                                                    <button id="remover" class="btn btn-danger">Remover</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>                                                
+                    </div>
+                </div>
+                <!-- editor -->
+                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">                            
+                                <div class="table-responsive table-striped">
+                                    <table class="table" id="tableMonitoring">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Regularity</th>
+                                                <th scope="col">Url</th>
+                                                <th scope="col">Enabled</th>
+                                                <th scope="col">Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="customtable">
+                                                                                      
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+            
+            <footer class="footer text-center">
+                Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>. Implementado por Achimid.
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <!-- <script src="./assets/libs/popper.js/dist/umd/popper.min.js"></script> -->
+    <script src="./assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="./assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="./assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="./dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="./dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="./dist/js/custom.min.js"></script>
+
+    <script src="./assets/libs/toastr/build/toastr.min.js"></script>
+
+    <script>
+        const API_URL_MONITORING = 'http://i-wanna-be-notified-api-01.herokuapp.com/api/v1/monitoring'
+        const $tableBody = $('#tableMonitoring > tbody')
+        const $form = $('#formMonitoring')
+        const $salvar = $('#salvar')
+        const $remover = $('#remover')
+        const $limpar = $('#limpar')
+
+        const $_id = $("input[name='_id']")
+        const $name = $("input[name='name']")
+        const $url = $("input[name='url']")
+        const $regularity = $("select[name='regularity']")
+        const $scriptTarget = $("textarea[name='scriptTarget']")
+        const $scriptContent = $("textarea[name='scriptContent']")
+        const $disabled = $("input[name='disabled']")
+        const $useJquery = $("input[name='useJquery']")
+        const $threshold = $("input[name='threshold']")
+        const $words = $("input[name='words']")
+        const $timeout = $("input[name='timeout']")
+        const $waitUntil = $("input[name='waitUntil']")
+        const $enableUserAgentRandom = $("input[name='enableUserAgentRandom']")
+        const $scriptTagUrl = $("input[name='scriptTagUrl']")
+        const $waitTime = $("input[name='waitTime']")
+        const $printscreen = $("input[name='printscreen']")
+        const $printscreenFullPage = $("input[name='printscreenFullPage']")
+        const $notifyChange = $("input[name='notifyChange']")
+        const $notifyUniqueChange = $("input[name='notifyUniqueChange']")
+        const $levelMax = $("input[name='levelMax']")
+        const $proxy = $("input[name='proxy']")
+        
+
+        $form.submit((e) => e.preventDefault())
+
+        $salvar.click((e) => {
+            const monitoring = {
+                url: $url.val(),
+                name: $name.val(),
+                scriptTarget: $scriptTarget.val(),
+                scriptContent: [$scriptContent.val()],
+                regularity: $regularity.val(),
+                disabled: $disabled.is(':checked'),
+                filter: {
+                    threshold: parseInt($threshold.val()) || undefined,
+                    words: [$words.val()]
+                },
+                options: {
+                    timeout: parseInt($timeout.val()) || undefined,
+                    levelMax: parseInt($levelMax.val()) || undefined,
+                    waitTime: parseInt($waitTime.val()) || undefined,
+                    proxy: $proxy.val(),
+                    waitUntil: $waitUntil.val(),
+                    scriptTagUrl: $scriptTagUrl.val(),
+                    useJquery: $useJquery.is(':checked'),
+                    printscreen: $printscreen.is(':checked'),
+                    notifyChange: $notifyChange.is(':checked'),
+                    notifyUniqueChange: $notifyUniqueChange.is(':checked'),
+                    printscreenFullPage: $printscreenFullPage.is(':checked'),
+                    enableUserAgentRandom: $enableUserAgentRandom.is(':checked'),
+                }
+            }
+
+            console.log(monitoring)
+
+            const id = $_id.val()
+            id ? editar(id, monitoring) : salvar(monitoring)
+            
+        })
+
+        
+        $limpar.click((e) => clear())
+        $remover.click((e) => remover($_id.val()))
+
+
+        function salvar(data) {
+            fetch(API_URL_MONITORING, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(() => {
+                clear()
+                reloadTable()
+                toastr.success('Monitoramento criado com sucesso!', 'Sucesso!')
+            }).catch(err => {
+                toastr.error('Ocorreu um erro ao criar o monitoramento', 'Ops!');
+                console.error(err)
+            })
+        }
+
+        function editar(id, data) {
+            fetch(`${API_URL_MONITORING}/${id}`, {
+                method: 'PUT',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(() => {
+                clear()
+                reloadTable()
+                toastr.success('Monitoramento editado com sucesso!', 'Sucesso!')
+            }).catch(err => {
+                toastr.error('Ocorreu um erro ao editar o monitoramento', 'Ops!');
+                console.error(err)
+            })
+        }
+
+        function remover(id) {
+            fetch(`${API_URL_MONITORING}/${id}`, {
+                method: 'DELETE',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+            }).then(() => {
+                clear()
+                reloadTable()
+                toastr.success( 'Monitoramento removido com sucesso!', 'Sucesso!')
+            }).catch(err => {
+                toastr.error('Ocorreu um erro ao remover o monitoramento', 'Ops!');
+                console.error(err)
+            })
+        }
+        
+
+
+
+
+        let monitoringsList = []
+
+        function renderTable(list) {
+            $tableBody.find('tr').remove()
+            monitoringsList = list
+
+            return list.map((m, index) => `
+                <tr>
+                    <th scope="row">${m._id}</th>
+                    <td>${m.name}</td>
+                    <td>${m.regularity}</td>
+                    <td>${m.url}</td>
+                    <td>
+                        <i class="mdi mdi-check text-${m.disabled ? 'danger' : 'success'}"></i>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="selectMonitoring(${index})">Selecionar</button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="remover('${m._id}')">Remover</button>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="executions('${m._id}')">Executoins</button>
+                        <button type="button" class="btn btn-info btn-sm" onclick="logs('${m._id}')">Logs</button>
+                    </td>
+                </tr>  
+            `)
+            .map(row => $tableBody.append(row))
+        }
+
+        function selectMonitoring(index) {
+            const selected = monitoringsList[index]
+
+            // console.log(selected)
+            clear()
+
+            $_id.val(selected._id)
+            $name.val(selected.name)
+            $url.val(selected.url)
+            $regularity.val(selected.regularity)
+            $scriptTarget.val(selected.scriptTarget)
+            $scriptContent.val(selected.scriptContent)
+            $disabled.val(selected.options?.disabled)
+            $useJquery.val(selected.options?.useJquery)
+            $threshold.val(selected.filter?.threshold)
+            $words.val(selected.filter?.words)
+            $timeout.val(selected.options?.timeout)
+            $enableUserAgentRandom.val(selected.options?.enableUserAgentRandom)
+            $scriptTagUrl.val(selected.options?.scriptTagUrl)
+            $waitTime.val(selected.options?.waitTime)
+            $printscreen.val(selected.options?.printscreen)
+            $printscreenFullPage.val(selected.options?.printscreenFullPage)
+            $notifyChange.val(selected.options?.notifyChange)
+            $notifyUniqueChange.val(selected.options?.notifyUniqueChange)
+            $levelMax.val(selected.options?.levelMax)
+            $proxy.val(selected.options?.proxy)
+
+            $disabled.prop('checked', selected.options?.disabled)
+            $useJquery.prop('checked', selected.options?.useJquery)
+            $printscreen.prop('checked', selected.options?.printscreen)
+            $notifyChange.prop('checked', selected.options?.notifyChange)
+            $notifyUniqueChange.prop('checked', selected.options?.notifyUniqueChange)
+            $printscreenFullPage.prop('checked', selected.options?.printscreenFullPage)
+            $enableUserAgentRandom.prop('checked', selected.options?.enableUserAgentRandom)
+
+            $name.focus()
+
+            toastr.success('Monitoramento selecionado!', 'Pronto!')
+        }
+
+        function clear() {
+            $_id.val('')
+            $url.val('')
+            $name.val('')
+            $words.val('')
+            $proxy.val('')
+            $timeout.val('')
+            $waitTime.val('')
+            $levelMax.val('')
+            $threshold.val('')
+            $regularity.val('')
+            $scriptTarget.val('')
+            $scriptTagUrl.val('')
+            $scriptContent.val('')
+            $enableUserAgentRandom.val('')
+
+            
+            $disabled.prop('checked', false)
+            $useJquery.prop('checked', true)
+            $printscreen.prop('checked', false)
+            $notifyChange.prop('checked', false)
+            $notifyUniqueChange.prop('checked', false)
+            $printscreenFullPage.prop('checked', false)
+            $enableUserAgentRandom.prop('checked', false)
+
+            $regularity.val('*/15 * * * *')
+        }
+
+        function reloadTable() {
+            fetch(API_URL_MONITORING)
+                .then(res => res.json())
+                .then(list => renderTable(list))
+        }
+        
+        reloadTable()
+    </script>
+</body>
+
+</html>
