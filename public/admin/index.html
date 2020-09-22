@@ -308,9 +308,18 @@
                                                 <textarea rows="5" class="form-control" name="scriptTarget" placeholder="Script do alvo a ser monitorado"></textarea>
                                             </div>
 
-                                            <div class="form-group m-t-20">
-                                                <label>ScriptContent</label>
-                                                <textarea rows="5" class="form-control" name="scriptContent" placeholder="Script para extração do conteudo"></textarea>
+                                            <div>
+                                                <div id="script-content-div">
+                                                    <div class="form-group m-t-20 script-content-div">
+                                                        <label>ScriptContent </label>
+                                                        <!-- Textarea injected -->
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <button id="adicionarContentScript" class="btn btn-success btn-sm">
+                                                            <i class="fas fa-plus-circle"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="row">
@@ -467,7 +476,7 @@
                         </div>
                     </div>
                 </div>
-                
+
 
             </div>
             
@@ -511,13 +520,15 @@
         const $salvar = $('#salvar')
         const $remover = $('#remover')
         const $limpar = $('#limpar')
+        const $adicionarContentScript = $('#adicionarContentScript')        
+        
+        const $scriptContentDiv = $('.script-content-div')
 
         const $_id = $("input[name='_id']")
         const $name = $("input[name='name']")
         const $url = $("input[name='url']")
         const $regularity = $("select[name='regularity']")
         const $scriptTarget = $("textarea[name='scriptTarget']")
-        const $scriptContent = $("textarea[name='scriptContent']")
         const $disabled = $("input[name='disabled']")
         const $useJquery = $("input[name='useJquery']")
         const $threshold = $("input[name='threshold']")
@@ -542,7 +553,7 @@
                 url: $url.val(),
                 name: $name.val(),
                 scriptTarget: $scriptTarget.val(),
-                scriptContent: [$scriptContent.val()],
+                scriptContent: [...$("textarea[name*='scriptContent']")].map(i => i.value).filter(s => s),
                 regularity: $regularity.val(),
                 disabled: $disabled.is(':checked'),
                 filter: {
@@ -575,6 +586,11 @@
         
         $limpar.click((e) => clear())
         $remover.click((e) => remover($_id.val()))
+
+        $adicionarContentScript.click(() => {
+            const index = $('.script-content-div > textarea').length + 1
+            createScriptContentArea('', index)
+        })
 
 
         function salvar(data) {
@@ -622,7 +638,17 @@
         }
         
 
+        function removeAllScriptContentArea() {
+            $('.script-content-div > textarea').remove()
+        }
 
+        function createScriptContentArea(sc, index) {            
+            const divSC = `
+                <textarea class="form-control" name="scriptContent${index}" placeholder="Script para extração do conteudo"></textarea>                
+            `
+            $scriptContentDiv.append(divSC)            
+            $(`textarea[name='scriptContent${index}']`).val(sc)
+        }
 
 
         let monitoringsList = []
@@ -662,7 +688,6 @@
             $url.val(selected.url)
             $regularity.val(selected.regularity)
             $scriptTarget.val(selected.scriptTarget)
-            $scriptContent.val(selected.scriptContent)
             $disabled.val(selected.options?.disabled)
             $useJquery.val(selected.options?.useJquery)
             $threshold.val(selected.filter?.threshold)
@@ -677,14 +702,19 @@
             $notifyUniqueChange.val(selected.options?.notifyUniqueChange)
             $levelMax.val(selected.options?.levelMax)
             $proxy.val(selected.options?.proxy)
+            $disabled.prop('checked', selected.disabled)
 
-            $disabled.prop('checked', selected.options?.disabled)
             $useJquery.prop('checked', selected.options?.useJquery)
             $printscreen.prop('checked', selected.options?.printscreen)
             $notifyChange.prop('checked', selected.options?.notifyChange)
             $notifyUniqueChange.prop('checked', selected.options?.notifyUniqueChange)
             $printscreenFullPage.prop('checked', selected.options?.printscreenFullPage)
             $enableUserAgentRandom.prop('checked', selected.options?.enableUserAgentRandom)
+
+            if (selected.scriptContent) {
+                removeAllScriptContentArea()
+                selected.scriptContent.map((v, index) => createScriptContentArea(v, index))
+            }
 
             $name.focus()
 
@@ -704,7 +734,6 @@
             $regularity.val('')
             $scriptTarget.val('')
             $scriptTagUrl.val('')
-            $scriptContent.val('')
             $enableUserAgentRandom.val('')
 
             
@@ -717,6 +746,9 @@
             $enableUserAgentRandom.prop('checked', false)
 
             $regularity.val('*/15 * * * *')
+
+            removeAllScriptContentArea()
+            createScriptContentArea('', 1)
         }
 
         function reloadTable() {
@@ -725,6 +757,7 @@
                 .then(list => renderTable(list))
         }
         
+        clear()
         reloadTable()
     </script>
 </body>
