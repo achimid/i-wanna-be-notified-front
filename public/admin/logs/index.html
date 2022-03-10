@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>I Wanna Be Notified - Admin - Logs</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div >
+        <div class="row" >
+            <div class="col-md-6" id="base-row"></div>
+            <div class="col-md-6" id="flow-row"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    const socket = io("ws://localhost:9005");
+
+    let $row = document.querySelector('#base-row')
+    let $flow = document.querySelector('#flow-row')
+
+    socket.on('i-wanna-be-notified-event-log', (data) => {
+        
+        // console.log(data)
+        createOrUpdateGroup(data)
+
+        setInterval(() => {
+            $row.innerHTML = ""
+            $flow.innerHTML = ""
+        }, 60000 * 2);
+
+    })
+
+    function createOrUpdateGroup({uuid, level, executionTime, log, extra, url}) {
+
+        let urlT = (url || "").replaceAll('/', '').replaceAll(':', '').replaceAll('#', '').replaceAll('.', '')
+
+
+        $flow.innerHTML = (`<div> 
+            <a data-toggle="collapse" href="#div-${uuid}">
+                [ID]
+            </a> 
+            <a data-toggle="collapse" href="#div-${urlT}">
+                ${url ? `[${url}]` : ''}
+            </a>
+            ${level} ${executionTime} ${log} ${(extra || "")} </div>`) + $flow.innerHTML
+
+        
+
+        let $divUrl = document.querySelector(`#div-${urlT} > div`)
+        if ($divUrl || urlT == "") {
+            
+            let $divExec = document.querySelector(`#div-${uuid} > div`)
+            if ($divExec) {
+                $divExec.innerHTML += `<div> ${level} ${executionTime} ${log} ${(extra || "")}</div>`
+                
+                if (url) {
+                    const count = document.querySelectorAll(`#div-${urlT} > div > div`).length
+                    document.querySelector(`#span-${urlT}`).innerHTML = `(${count || 1})`           
+                }
+                return 
+            }    
+            
+
+            let groupExec = `
+                <div class="panel-group" id="group-${uuid}">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#div-${uuid}">[${uuid}]</a>
+                            </h4>
+                        </div>
+                        <div id="div-${uuid}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div>
+                                ${level} ${executionTime} ${log} ${(extra || "")}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+
+            $divUrl.innerHTML = groupExec + $divUrl.innerHTML            
+            return
+
+        }
+
+        
+        let groupUrl = `
+            <div class="panel-group" id="group-${urlT}">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#div-${urlT}"> <span id="span-${urlT}">(1)</span> ${url} </a>                            
+                        </h4>
+                    </div>
+                    <div id="div-${urlT}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            
+                            <div class="panel-group" id="group-${uuid}">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" href="#div-${uuid}">[${uuid}]</a>
+                                        </h4>
+                                    </div>
+                                    <div id="div-${uuid}" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div>
+                                            ${level} ${executionTime} ${log} ${(extra || "")}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+
+        $row.innerHTML = groupUrl + $row.innerHTML
+    }
+
+</script>
+
+</html>
