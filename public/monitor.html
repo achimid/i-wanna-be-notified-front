@@ -14,7 +14,9 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,12 +30,16 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+
+
   <style>
     .container-iframe {
       position: relative;
       overflow: hidden;
       width: 100%;
-      padding-top: 100%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+      padding-top: 100%;
+      /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
     }
 
     /* Then style the iframe to fit in the container div with full height and width */
@@ -47,8 +53,20 @@
       height: 100%;
     }
 
-    .container, .container-lg, .container-md, .container-sm, .container-xl {
-        max-width: 90%;
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+      max-width: 90%;
+    }
+
+    .pd-botton {
+      padding-bottom: 25px;
+    }
+
+    .pd-top {
+      padding-top: 25px;
     }
   </style>
 
@@ -68,12 +86,12 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="index.html">Home</a></li>
+          <!-- <li class="active"><a href="index.html">Home</a></li>
           <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#services">Services</a></li> -->
           <!-- <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#team">Team</a></li> -->
-          <li><a href="index.html#pricing">Pricing</a></li>
+          <!-- <li><a href="index.html#pricing">Pricing</a></li> -->
           <!-- <li class="drop-down"><a href="">Drop Down</a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -91,14 +109,15 @@
               <li><a href="#">Drop Down 5</a></li>
             </ul>
           </li> -->
-          <li><a href="index.html#contact">Contact</a></li>
+          <!-- <li><a href="index.html#contact">Contact</a></li> -->
 
           <!-- <li class="get-started"><a href="#about">Começar agora</a></li> -->
         </ul>
       </nav><!-- .nav-menu -->
 
     </div>
-  </header><!-- End Header -->
+  </header>
+  <!-- End Header -->
 
   <main id="main">
 
@@ -107,7 +126,7 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Novo monitoramento</h2>          
+          <h2>Monitoramento</h2>
         </div>
 
       </div>
@@ -119,91 +138,180 @@
 
         <div class="row">
 
-          <div class="col-lg-7">
-            <!-- <h2 class="portfolio-title">Exemplo da pagina a ser monitorada</h2> -->
-            <div class="container-iframe">
-              <iframe id="iframe-page" class="responsive-iframe" src="http://iwannabenotified.ddns.net/"></iframe>
-            </div>
-          </div>
 
-          <div class="col-lg-5 portfolio-info contact" data-aos="fade-up" data-aos-delay="300">
-            <h3>Informações do monitoramento</h3>
+          <div class="col-lg-12 portfolio-info contact" data-aos="fade-up" data-aos-delay="300">
+            <!-- <h3>Informações do monitoramento</h3> -->
+
+
+            <form role="form" class="php-email-form" id="monitor-form">
+
+              <div class="row">
+
+                <div class="col-lg-10">
+                  <div class="row">
+                    <div class="form-group col-lg-3">
+                      <input type="text" class="form-control" id="name" placeholder="Nome do monitoramento"
+                        data-rule="minlen:4" data-msg="Informe um nome maior que 4 caracteres" />
+                      <div class="validate"></div>
+                    </div>
+
+                    <div class="form-group col-lg-5">
+                      <input type="text" class="form-control" id="url" placeholder="Endereço do site?"
+                        data-rule-url="true" data-rule="minlen:4" data-msg="Informe um endereço válido" />
+                      <div class="validate"></div>
+                    </div>
+
+                    <div class="form-group col-lg-3">
+                      <div class="form-group">
+                        <select class="form-control" id="regularity" name="regularity">
+                          <option selected>a cada 3 minutos</option>
+                          <option>a cada 5 minutos</option>
+                          <option>a cada 10 minutos</option>
+                          <option>a cada 15 minutos</option>
+                          <option>a cada 30 minutos</option>
+                          <option>a cada 60 minutos</option>
+                        </select>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+
+                    <div class="form-group col-lg-6 ">
+                      <textarea class="form-control code" id="scriptTarget" rows="4"
+                        placeholder="Qual parte do site desejo monitorar? (scriptTarget)">
+                      </textarea>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                      <textarea class="form-control" id="scriptContent" rows="4"
+                        placeholder="Qual informaçao deseja extrair? (scriptContent)"></textarea>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                      <textarea class="form-control" id="scriptNavigate" rows="2"
+                        placeholder="Script para obter a Url dinamicamente? (scriptNavigate)"></textarea>
+                    </div>
+
+                    <div class="col-lg-2">
+                      <input type="number" class="form-control" id="filter.threshold" placeholder="Filtro threshold" />
+                    </div>
+
+                    <div class="col-lg-4">
+                      <input type="text" class="form-control" id="filter.words" placeholder="Lista de palavras" />
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-lg-2">
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="useJquery">
+                      <label class="form-check-label" for="useJquery">Utilizar scripts com JQuery</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="notifyChange">
+                      <label class="form-check-label" for="notifyChange">Identificar apenas alterações</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="notifyUniqueChange">
+                      <label class="form-check-label" for="notifyUniqueChange">Identificar apenas unicidades</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="disabled">
+                      <label class="form-check-label" for="disabled">Desabilitado</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="enableUserAgentRandom">
+                      <label class="form-check-label" for="enableUserAgentRandom">Utilizar UserAgent aleatórios</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="printscreen">
+                      <label class="form-check-label" for="printscreen">Efetuar printscreen</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="printscreenFullPage">
+                      <label class="form-check-label" for="printscreenFullPage">Efetuar printscreen completo</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="pdf">
+                      <label class="form-check-label" for="pdf">Gerar PDF</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="temporary">
+                      <label class="form-check-label" for="temporary">Execução temporária</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="filterDomain">
+                      <label class="form-check-label" for="filterDomain">Filtrar dominio</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="splitable">
+                      <label class="form-check-label" for="splitable">Splitable</label>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-lg-12">
+
+                  <div class="text-center pd-botton">
+                    <button id="btnAdicionarContent" class="btn btn-info"
+                      title="Adicionar uma nova extração de informação">+ Adicionar Notificação</button>
+                  </div>
+                </div>
+
+                <div class="col-lg-12">
+
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="notification.url" placeholder="URL" />
+                      </div>
+                    </div>
+                    <div class="col-lg-1">
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="notification.method" placeholder="Method"
+                          value="GET" />
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <textarea class="form-control" id="notification.template" rows="2"
+                          placeholder="Template"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-lg-1">
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="notification.level" placeholder="Level" />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <div class="col-lg-12">
+                  <div class="text-center">
+                    <button id="btnTestar" class="btn btn-info"
+                      title="Testar o monitoramento e os scripts">Testar</button>
+                    <button type="submit" title="Criar a nova extração">Salvar</button>
+                  </div>
+                </div>
+
+            </form>
+
             
-              <form role="form" class="php-email-form" id="monitor-form">
+              <div class="col-lg-12 pd-top">
                 <div class="form-group">
-                  <input type="text" name="url" class="form-control" id="url" placeholder="Endereço do site?" 
-                    data-rule-url="true" data-rule="minlen:4"  data-msg="Informe um endereço válido" />
-                  <div class="validate"></div>
+                  <textarea class="form-control" id="result" rows="5"></textarea>
                 </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Nome do monitoramento" 
-                  data-rule="minlen:4" data-msg="Informe um nome maior que 4 caracteres" />
-                  <div class="validate"></div>
-                </div>
-                <div class="form-group">
-                  <div class="form-group">
-                    <select class="form-control" id="hitTime" name="hitTime">
-                      <option>Verificar a cadas 3 minutos</option>
-                      <option selected>Verificar a cadas 5 minutos</option>
-                      <option>Verificar a cadas 10 minutos</option>
-                      <option>Verificar a cadas 15 minutos</option>
-                      <option>Verificar a cadas 30 minutos</option>
-                      <option>Verificar a cadas 60 minutos</option>
-                    </select>
-                  </div>  
-                </div>
-                <div class="form-group">
-                  <select class="form-control">
-                    <option>(Opções de ajuda) O que desejo fazer?</option>
-                    <option>Extrair o html da pagina</option>
-                    <option>Monitorar mudanças no site</option>
-                    <option>Executar um comando (script)</option>
-                  </select>
-                </div>              
-                <div class="form-group">                  
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="useJquery" name="useJquery">
-                    <label class="form-check-label" for="useJquery">Utilizar scripts com JQuery</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="onlyChanged" name="onlyChanged">
-                    <label class="form-check-label" for="onlyChanged">Identificar apenas alterações</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="onlyUnique" name="onlyUnique">
-                    <label class="form-check-label" for="onlyUnique">Identificar apenas unicidades</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="printscreen" name="printscreen">
-                    <label class="form-check-label" for="printscreen">Efetuar printscreen da pagina</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="printscreenFullPage" name="printscreenFullPage">
-                    <label class="form-check-label" for="printscreenFullPage">Efetuar printscreen da pagina completa</label>
-                  </div>
-                </div>
-                
-                <div class="div-scriptContent">
-                  <div class="form-group">
-                    <textarea class="form-control scriptContent" name="scriptContent" rows="2" placeholder="Qual informaçao deseja extrair? (script)"></textarea>
-                  </div>
-                </div>
+              </div>
+            
 
-                <div class="form-group">
-                  <textarea class="form-control" id="scriptTarget" name="scriptTarget" rows="5" placeholder="Qual parte do site desejo monitorar? (script)"></textarea>
-                </div>
-                <div class="mb-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
-                <div class="text-center">
-                  <button id="btnAdicionarContent" class="btn btn-info" title="Adicionar uma nova extração de informação">+ Add</button>
-                  <button id="btnTestar" class="btn btn-info" title="Testar o monitoramento e os scripts">Testar</button>
-                  <button type="submit" title="Criar a nova extração">Salvar</button>
-                </div>
-              </form>
           </div>
+
 
         </div>
 
@@ -213,7 +321,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
+  <!-- <footer id="footer">
     <div class="container">
       <div class="row d-flex align-items-center">
         <div class="col-lg-6 text-lg-left text-center">
@@ -234,11 +342,13 @@
         </div>
       </div>
     </div>
-  </footer><!-- End Footer -->
+  </footer> -->
+  <!-- End Footer -->
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
   <!-- Vendor JS Files -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
   <script src="assets/vendor/jquery/jquery.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
